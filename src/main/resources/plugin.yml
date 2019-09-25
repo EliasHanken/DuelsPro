@@ -1,0 +1,10 @@
+name: DuelsPro
+version: 1.0
+main: me.streafe.DuelsPro.DuelsPro
+description: DuelsPro plugin
+
+commands:
+  PlayerList:
+    usage: /<command>
+    description: Get the registered users online
+    default: op

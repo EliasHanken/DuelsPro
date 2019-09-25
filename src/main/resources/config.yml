@@ -1,0 +1,6 @@
+duelspro:
+  prefix: '&7[&eDuelsPro&7] '
+  game-started: '&7[&eDuelsPro&7] &cGame has already started'
+  game-join: '&7[&eDuelsPro&7] &7You joined the game. Opponent: %opponent%'
+  game-leave: '&7[&eDuelsPro&7] &7You left the game!'
+  succesfull-join: '&aYou have succesfully been added to the databases!'
