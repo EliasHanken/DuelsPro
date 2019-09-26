@@ -1,4 +1,4 @@
-package me.streafe.DuelsPro.commands;
+package me.streafe.DuelsPro.Commands;
 
 import me.streafe.DuelsPro.DuelsPro;
 import me.streafe.DuelsPro.utils.Utils;

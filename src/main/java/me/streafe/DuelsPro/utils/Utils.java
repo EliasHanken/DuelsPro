@@ -1,7 +1,6 @@
 package me.streafe.DuelsPro.utils;
 
 import me.streafe.DuelsPro.Player;
-import me.streafe.DuelsPro.game.GameState;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import org.bukkit.ChatColor;

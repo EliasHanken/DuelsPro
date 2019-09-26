@@ -1,6 +1,6 @@
 package me.streafe.DuelsPro;
 
-import me.streafe.DuelsPro.game.GameState;
+import me.streafe.DuelsPro.Game.GameState;
 
 import java.util.UUID;
 

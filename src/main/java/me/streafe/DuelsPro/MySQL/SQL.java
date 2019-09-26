@@ -37,12 +37,17 @@ public class SQL {
 
     public void createTable(String tableName) throws SQLException{
         Statement st = connection.createStatement();
-        st.executeQuery("CREATE TABLE IF NOT EXISTS "+tableName+"");
+        st.execute("CREATE TABLE IF NOT EXISTS "+tableName+" ( " +
+                "uuid VARCHAR(45), name VARCHAR(45), friendCount INT, bestFriend VARCHAR(45) )");
         st.close();
     }
 
     public Connection getConnection(){
         return this.connection;
     }
+
+
+
+
 
 }

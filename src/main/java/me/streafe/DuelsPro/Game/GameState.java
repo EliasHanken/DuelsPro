@@ -1,4 +1,4 @@
-package me.streafe.DuelsPro.game;
+package me.streafe.DuelsPro.Game;
 
 public enum GameState {
 
