@@ -1,11 +1,13 @@
 package me.streafe.DuelsPro;
 
+import me.streafe.DuelsPro.game.GameState;
+
 import java.util.UUID;
 
 public class Player {
 
     private UUID playerUUID;
-    private GameEnumType enumType;
+    private GameState enumType;
     private Player target;
     private DuelsPro duelsPro;
 
