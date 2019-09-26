@@ -4,3 +4,9 @@ duelspro:
   game-join: '&7[&eDuelsPro&7] &7You joined the game. Opponent: %opponent%'
   game-leave: '&7[&eDuelsPro&7] &7You left the game!'
   succesfull-join: '&aYou have succesfully been added to the databases!'
+mysql:
+  host: 'localhost'
+  user: 'root'
+  password: 'root'
+  port: '3306'
+  database: 'streafe_server'

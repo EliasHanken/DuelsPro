@@ -1,5 +1,6 @@
 package me.streafe.DuelsPro;
 
+import me.streafe.DuelsPro.MySQL.SQL;
 import me.streafe.DuelsPro.commands.PlayerList;
 import me.streafe.DuelsPro.utils.Utils;
 import org.bukkit.event.EventHandler;
@@ -8,7 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+import java.sql.SQLException;
 import java.util.*;
 
 public class DuelsPro extends JavaPlugin implements Listener {
@@ -18,25 +19,30 @@ public class DuelsPro extends JavaPlugin implements Listener {
     private static DuelsPro instance;
     public List<Player> inGame;
     public Utils utils;
-    private File playersDirFile;
+    public SQL sql;
+    private String host, database, user, password;
+    private int port;
 
     @Override
     public void onEnable(){
         instance = this;
+        this.host = getConfig().get("mysql.host").toString();
+        this.database = getConfig().get("mysql.database").toString();
+        this.user = getConfig().get("mysql.user").toString();
+        this.password = getConfig().get("mysql.password").toString();
+        this.port = getConfig().getInt("mysql.port");
         this.inGame = new ArrayList<Player>();
         this.players = new HashMap<>();
         this.utils = new Utils();
-        this.playersDirFile = new File(getDataFolder() + "/" + "players");
-
-        if(!getDataFolder().exists()){
-            getDataFolder().mkdirs();
+        this.sql = new SQL(this.host,this.database,this.user,this.password,this.port);
+        try {
+            this.sql.openConnection();
+            this.sql.createTable("test");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-
-        if(!this.playersDirFile.exists()){
-            this.playersDirFile.mkdirs();
-        }
-
-
 
         getServer().getPluginManager().registerEvents(this,this);
 
@@ -50,7 +56,11 @@ public class DuelsPro extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable(){
-
+        try {
+            this.sql.getConnection().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static DuelsPro getInstance(){
@@ -59,12 +69,10 @@ public class DuelsPro extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
-        Player playerClass = new Player(event.getPlayer().getUniqueId());
-        playerClass.createPlayerFiles();
         if(!this.players.containsKey(event.getPlayer().getUniqueId())){
-
-
+            Player playerClass = new Player(event.getPlayer().getUniqueId());
             players.put(playerClass.getPlayerUUID(),playerClass);
+            event.getPlayer().sendMessage(getPlayersClassList().toString());
             event.getPlayer().sendMessage(utils.translate(getConfig().get("duelspro.prefix").toString()) + utils.translate("&aSuccessfully added to the databases!"));
         }else{
             event.getPlayer().sendMessage(utils.translate(getConfig().get("duelspro.prefix").toString()) + utils.translate("&cError: &7Please rejoin or ask admin for help"));
