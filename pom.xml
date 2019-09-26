@@ -27,7 +27,11 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
+                    <!-- PC
                     <outputDirectory>D:\minecraft-servers\spigot-1.8\plugins</outputDirectory>
+                    -->
+                    <!-- mac -->
+                    <outputDirectory>/users/elias/Desktop/mc_server/plugins</outputDirectory>
                     <archive>
                         <manifest>
                             <mainClass>me.streafe.MDB.Main</mainClass>

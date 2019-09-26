@@ -14,25 +14,24 @@ public class SQL {
     private String password;
     private String host;
 
-    public SQL(String host, String databaseName, String userName, String password){
+    public SQL(String host, String databaseName, String userName, String password,int port){
         this.password = password;
         this.userName = userName;
         this.databaseName = databaseName;
         this.host = host;
+        this.port = port;
     }
 
     public void openConnection() throws SQLException, ClassNotFoundException {
         if (this.connection != null && !this.connection.isClosed()){
             return;
         }
-
         synchronized (this){
             if(connection != null && !this.connection.isClosed()){
                 return;
             }
             Class.forName("com.mysql.jdbc.Driver");
-            this.connection = DriverManager.getConnection("jdbc.mysql://" + this.host + ":" + this.port + "/" + this.databaseName,
-                    this.userName,this.password);
+            this.connection = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.databaseName,this.userName,this.password);
         }
     }
 
@@ -40,6 +39,10 @@ public class SQL {
         Statement st = connection.createStatement();
         st.executeQuery("CREATE TABLE IF NOT EXISTS "+tableName+"");
         st.close();
+    }
+
+    public Connection getConnection(){
+        return this.connection;
     }
 
 }

@@ -30,10 +30,11 @@ public class DuelsPro extends JavaPlugin implements Listener {
         this.database = getConfig().get("mysql.database").toString();
         this.user = getConfig().get("mysql.user").toString();
         this.password = getConfig().get("mysql.password").toString();
+        this.port = getConfig().getInt("mysql.port");
         this.inGame = new ArrayList<Player>();
         this.players = new HashMap<>();
         this.utils = new Utils();
-        this.sql = new SQL(this.host,this.database,this.user,this.password);
+        this.sql = new SQL(this.host,this.database,this.user,this.password,this.port);
         try {
             this.sql.openConnection();
             this.sql.createTable("test");
@@ -55,7 +56,11 @@ public class DuelsPro extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable(){
-
+        try {
+            this.sql.getConnection().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static DuelsPro getInstance(){
