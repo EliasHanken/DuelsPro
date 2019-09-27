@@ -37,7 +37,7 @@
 
                     <archive>
                         <manifest>
-                            <mainClass>me.streafe.MDB.Main</mainClass>
+                            <mainClass>me.streafe.DuelsPro.DuelsPro</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

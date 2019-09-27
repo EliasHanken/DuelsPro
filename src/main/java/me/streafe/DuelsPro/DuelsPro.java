@@ -1,10 +1,12 @@
 package me.streafe.DuelsPro;
 
+import me.streafe.DuelsPro.Commands.BanPlayer;
 import me.streafe.DuelsPro.Listeners.PlayerBannedEvent;
 import me.streafe.DuelsPro.MySQL.SQL;
 import me.streafe.DuelsPro.MySQL.SQL_Player_Manager;
 import me.streafe.DuelsPro.Commands.PlayerList;
 import me.streafe.DuelsPro.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -46,7 +48,8 @@ public class DuelsPro extends JavaPlugin implements Listener {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        getCommand("PlayerList").setExecutor(new PlayerList());
+        Bukkit.getPluginCommand("PlayerList").setExecutor(new PlayerList());
+        Bukkit.getPluginCommand("ban").setExecutor(new BanPlayer());
 
         getServer().getConsoleSender().sendMessage(this.utils.translate(getConfig().get("duelspro.prefix").toString() + " &dHas been enabled"));
 

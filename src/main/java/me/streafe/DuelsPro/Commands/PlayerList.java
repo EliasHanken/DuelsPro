@@ -26,7 +26,6 @@ public class PlayerList implements CommandExecutor {
                         this.list = new ArrayList<>();
                         list.add(Bukkit.getPlayer(uuid).getName());
                     }
-
                     player.sendMessage(utils.translate(DuelsPro.getInstance().getConfig().get("duelspro.prefix").toString())+utils.translate("&aPlayers online:"));
                     player.sendMessage(utils.translate("&7------------------------"));
                     player.sendMessage(utils.translate("&7" + this.list.toString()));

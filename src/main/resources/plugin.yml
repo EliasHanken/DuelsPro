@@ -8,3 +8,7 @@ commands:
     usage: /<command>
     description: Get the registered users online
     default: op
+  ban:
+    usage: /<command>
+    description: Ban player
+    default: op
