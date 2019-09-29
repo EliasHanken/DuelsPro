@@ -16,3 +16,7 @@ commands:
     usage: /<command>
     description: Unban player
     default: op
+  menu:
+    usage: /<command>
+    description: Menu command
+    default: true

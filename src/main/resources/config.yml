@@ -10,3 +10,10 @@ mysql:
   password: 'root'
   port: '3306'
   database: 'streafe_server'
+gadgets:
+  heads:
+    default:
+      - 'streafe'
+      - '_jeb'
+      - 'atob'
+

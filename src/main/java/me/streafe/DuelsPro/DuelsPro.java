@@ -1,6 +1,7 @@
 package me.streafe.DuelsPro;
 
 import me.streafe.DuelsPro.Commands.BanPlayer;
+import me.streafe.DuelsPro.Commands.MenuCommand;
 import me.streafe.DuelsPro.Commands.UnBan;
 import me.streafe.DuelsPro.Listeners.PlayerBannedEvent;
 import me.streafe.DuelsPro.MySQL.SQL;
@@ -53,6 +54,7 @@ public class DuelsPro extends JavaPlugin implements Listener {
         Bukkit.getPluginCommand("PlayerList").setExecutor(new PlayerList());
         Bukkit.getPluginCommand("ban").setExecutor(new BanPlayer());
         Bukkit.getPluginCommand("unban").setExecutor(new UnBan());
+        Bukkit.getPluginCommand("menu").setExecutor(new MenuCommand());
 
         getServer().getConsoleSender().sendMessage(this.utils.translate(getConfig().get("duelspro.prefix").toString() + " &dHas been enabled"));
 
