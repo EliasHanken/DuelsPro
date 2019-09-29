@@ -1,6 +1,7 @@
 package me.streafe.DuelsPro;
 
 import me.streafe.DuelsPro.Game.GameState;
+import org.bukkit.Bukkit;
 
 import java.util.UUID;
 
@@ -34,6 +35,10 @@ public class Player {
 
     public UUID getPlayerUUID(){
         return this.playerUUID;
+    }
+
+    public void sendMessage(String msg){
+        Bukkit.getPlayer(this.playerUUID).sendMessage(msg);
     }
 
 }

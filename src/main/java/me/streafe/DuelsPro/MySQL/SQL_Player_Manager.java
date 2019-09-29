@@ -27,9 +27,9 @@ public class SQL_Player_Manager {
             Statement st = DuelsPro.getInstance().getSql().getConnection().createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM playerinfo WHERE uuid='"+player.getPlayerUUID()+"'");
             if(!rs.next()){
-                st.executeUpdate("INSERT INTO playerinfo (uuid, name, nick, rank) VALUES ('"+player.getPlayerUUID()+"','"+
+                st.executeUpdate("INSERT INTO playerinfo (uuid, name, nick, rank, banned, overallKills, duelsKills, level,op,receiveMsg) VALUES ('"+player.getPlayerUUID()+"','"+
                         Bukkit.getPlayer(player.getPlayerUUID()).getName() +"', '"+
-                        Bukkit.getPlayer(player.getPlayerUUID()).getName()+"', 'default')");
+                        Bukkit.getPlayer(player.getPlayerUUID()).getName()+"', 'default' , 0, 0, 0, 0, 1,0)");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,10 +48,10 @@ public class SQL_Player_Manager {
 
     }
 
-    public void updatePlayer(UUID uuid, String nick, int online){
+    public void updatePlayer(UUID uuid, int online){
         try {
             Statement st = DuelsPro.getInstance().getSql().getConnection().createStatement();
-            st.executeUpdate("UPDATE playerinfo SET nick='"+nick+"', online='"+online+"' WHERE uuid = '"+uuid+"'");
+            st.executeUpdate("UPDATE playerinfo SET online='"+online+"' WHERE uuid = '"+uuid+"'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,7 +60,7 @@ public class SQL_Player_Manager {
     public void updateColumn(UUID uuid, String columnName, String value){
         try{
             Statement st = DuelsPro.getInstance().getSql().getConnection().createStatement();
-            st.executeUpdate("UPDATE playerinfo SET '"+columnName+"'='"+value+"' WHERE uuid='"+uuid+"'");
+            st.executeUpdate("UPDATE playerinfo SET "+columnName+"='"+value+"' WHERE uuid='"+uuid+"'");
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -69,7 +69,7 @@ public class SQL_Player_Manager {
     public void updateColumn(UUID uuid, String columnName, int value){
         try{
             Statement st = DuelsPro.getInstance().getSql().getConnection().createStatement();
-            st.executeUpdate("UPDATE playerinfo SET '"+columnName+"'='"+value+"' WHERE uuid='"+uuid+"'");
+            st.executeUpdate("UPDATE playerinfo SET "+columnName+"="+value+" WHERE uuid='"+uuid+"'");
         }catch (SQLException e){
             e.printStackTrace();
         }

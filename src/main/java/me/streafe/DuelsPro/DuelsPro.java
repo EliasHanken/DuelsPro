@@ -1,6 +1,7 @@
 package me.streafe.DuelsPro;
 
 import me.streafe.DuelsPro.Commands.BanPlayer;
+import me.streafe.DuelsPro.Commands.UnBan;
 import me.streafe.DuelsPro.Listeners.PlayerBannedEvent;
 import me.streafe.DuelsPro.MySQL.SQL;
 import me.streafe.DuelsPro.MySQL.SQL_Player_Manager;
@@ -14,6 +15,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public class DuelsPro extends JavaPlugin implements Listener {
@@ -50,6 +52,7 @@ public class DuelsPro extends JavaPlugin implements Listener {
         }
         Bukkit.getPluginCommand("PlayerList").setExecutor(new PlayerList());
         Bukkit.getPluginCommand("ban").setExecutor(new BanPlayer());
+        Bukkit.getPluginCommand("unban").setExecutor(new UnBan());
 
         getServer().getConsoleSender().sendMessage(this.utils.translate(getConfig().get("duelspro.prefix").toString() + " &dHas been enabled"));
 
@@ -94,8 +97,9 @@ public class DuelsPro extends JavaPlugin implements Listener {
         this.sql_player_manager = new SQL_Player_Manager(new Player(event.getPlayer().getUniqueId()));
         this.sql_player_manager.createPlayerTable();
         this.sql_player_manager.createPlayerFirstTime();
-        sql_player_manager.updatePlayer(event.getPlayer().getUniqueId(),"buldozer",1);
-        sql_player_manager.updateColumn(event.getPlayer().getUniqueId(),"banned","0");
+        sql_player_manager.updatePlayer(event.getPlayer().getUniqueId(),1);
+
+
     }
 
     @EventHandler
@@ -104,7 +108,7 @@ public class DuelsPro extends JavaPlugin implements Listener {
             players.remove(event.getPlayer().getUniqueId());
         }
 
-        this.sql_player_manager.updatePlayer(event.getPlayer().getUniqueId(),"buldozer",0);
+        this.sql_player_manager.updatePlayer(event.getPlayer().getUniqueId(),0);
 
     }
 
