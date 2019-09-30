@@ -11,7 +11,12 @@ mysql:
   port: '3306'
   database: 'streafe_server'
 gadgets:
+  home_menu:
+    - 'skywars'
+    - 'survival'
   heads:
+    background:
+      - 'Material.STAINED_GLASS'
     default:
       - 'streafe'
       - '_jeb'

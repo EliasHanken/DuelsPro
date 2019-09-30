@@ -27,12 +27,12 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <!-- PC -->
+                    <!-- PC
                     <outputDirectory>D:\minecraft-servers\spigot-1.8\plugins</outputDirectory>
-
-                    <!-- mac
+-->
+                    <!-- mac -->
                     <outputDirectory>/users/elias/Desktop/mc_server/plugins</outputDirectory>
-                    -->
+
 
 
                     <archive>

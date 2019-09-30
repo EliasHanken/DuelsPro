@@ -13,8 +13,8 @@ public class MenuCommand implements CommandExecutor {
             Player player = (Player) sender;
             if(args.length < 1){
                 if (cmd.getName().equalsIgnoreCase("menu")){
-                    Menu menu = new Menu(player,"gadgets",9);
-                    menu.createDisplay();
+                    Menu menu = new Menu(player,"gadgets",18);
+                    menu.createHomeDisplay();
                 }
             }
         }

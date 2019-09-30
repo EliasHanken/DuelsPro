@@ -2,7 +2,9 @@ package me.streafe.DuelsPro.Gadgets;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -16,6 +18,7 @@ public class Head extends ItemStack {
     private SkullMeta skullMeta;
     private int invSlot;
     private Inventory inv;
+    private boolean enchanted = false;
 
     public Head(String name, Inventory inv){
         this.name = name;
@@ -31,5 +34,27 @@ public class Head extends ItemStack {
 
 
         return itemStack;
+    }
+
+    public void enchantItem(){
+        this.skullMeta.addEnchant(Enchantment.KNOCKBACK,1,true);
+        skullMeta.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
+        this.itemStack.setItemMeta(skullMeta);
+        this.enchanted = true;
+    }
+
+    public void removeEnchant(){
+        this.skullMeta.removeEnchant(Enchantment.KNOCKBACK);
+        skullMeta.getItemFlags().remove(ItemFlag.HIDE_ATTRIBUTES);
+        this.itemStack.setItemMeta(skullMeta);
+        this.enchanted = false;
+    }
+
+    public boolean hasEnchantment(){
+        if(this.enchanted){
+            return true;
+        }
+
+        return false;
     }
 }

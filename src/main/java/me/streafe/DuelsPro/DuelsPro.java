@@ -3,6 +3,7 @@ package me.streafe.DuelsPro;
 import me.streafe.DuelsPro.Commands.BanPlayer;
 import me.streafe.DuelsPro.Commands.MenuCommand;
 import me.streafe.DuelsPro.Commands.UnBan;
+import me.streafe.DuelsPro.Listeners.MenuGadgetListener;
 import me.streafe.DuelsPro.Listeners.PlayerBannedEvent;
 import me.streafe.DuelsPro.MySQL.SQL;
 import me.streafe.DuelsPro.MySQL.SQL_Player_Manager;
@@ -61,6 +62,7 @@ public class DuelsPro extends JavaPlugin implements Listener {
         getServer().getConsoleSender().sendMessage(this.host + ":" + this.database + ":" + this.user + ":" + this.password + ":" + this.port);
         getServer().getPluginManager().registerEvents(this,this);
         getServer().getPluginManager().registerEvents(new PlayerBannedEvent(),this);
+        getServer().getPluginManager().registerEvents(new MenuGadgetListener(),this);
 
 
         getConfig().options().copyDefaults(true);
